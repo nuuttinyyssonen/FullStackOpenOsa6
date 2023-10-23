@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { filterChange } from '../reducers/filterReducer'
+import { filterReducer } from '../reducers/filterReducer'
 
 const FilterForm = () => {
     const dispatch = useDispatch()
@@ -7,7 +7,7 @@ const FilterForm = () => {
     return(
         <div>
             <h3>Filter</h3>
-            <input onChange={e => dispatch(filterChange(e.target.value))}/>
+            <input onChange={e => dispatch(filterReducer(e.target.value))}/>
         </div>
     )
 }

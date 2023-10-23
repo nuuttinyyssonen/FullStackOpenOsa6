@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { voteAnecdote } from '../reducers/anecdoteReducer'
+import { vote } from '../reducers/anecdoteReducer'
+import { setNotification, clearNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
     const anecdotes = useSelector(({anecdotes, filter}) => {
         if(filter !== '') {
-            const filteredAnecdotes = anecdotes.filter(anecdote => anecdote.payload.content.includes(filter))
+            const filteredAnecdotes = anecdotes.filter(anecdote => anecdote.content.includes(filter))
             return filteredAnecdotes
         } else {
             return anecdotes
@@ -12,19 +13,29 @@ const AnecdoteList = () => {
     })
     const dispatch = useDispatch()
 
-    const sortedAnecdotes = anecdotes.sort((first, second) => second.payload.votes - first.payload.votes)
+    const sortedAnecdotes = [...anecdotes].sort((first, second) => second.votes - first.votes)
+
+    const handleVote = (id, content) => {
+        dispatch(setNotification(`You voted for ${content}`))
+        dispatch(vote(id))
+        setTimeout(() => {
+            dispatch(clearNotification());
+        }, 5000);
+    }
+
+    console.log(sortedAnecdotes)
 
     return(
         <div>
             <div>
             {sortedAnecdotes.map(anecdote =>
-                <div key={anecdote.payload.id}>
+                <div key={anecdote.id}>
                 <div>
-                    {anecdote.payload.content}
+                    {anecdote.content}
                 </div>
                 <div>
-                    has {anecdote.payload.votes}
-                    <button onClick={() => dispatch(voteAnecdote(anecdote.payload.id))}>vote</button>
+                    has {anecdote.votes}
+                    <button onClick={() => handleVote(anecdote.id, anecdote.content)}>vote</button>
                 </div>
                 </div>
             )}
