@@ -1,0 +1,24 @@
+{
+  "anecdotes": [
+    {
+      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      "votes": 9,
+      "id": 1
+    },
+    {
+      "content": "Premature optimization is the root of all evil.",
+      "votes": 4,
+      "id": 2
+    },
+    {
+      "content": "Test anecdote",
+      "votes": 6,
+      "id": 3
+    },
+    {
+      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      "votes": 2,
+      "id": 4
+    }
+  ]
+}
